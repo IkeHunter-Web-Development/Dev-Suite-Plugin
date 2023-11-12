@@ -67,8 +67,8 @@ class Dev_Suite {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'Dev_Suite_VERSION' ) ) {
-			$this->version = Dev_Suite_VERSION;
+		if ( defined( 'DEV_SUITE_VERSION' ) ) {
+			$this->version = DEV_SUITE_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
@@ -152,7 +152,7 @@ class Dev_Suite {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Dev_Suite_Admin( $this->get_Dev_Suite(), $this->get_version() );
+		$plugin_admin = new Dev_Suite_Admin( $this->get_dev_suite(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -168,7 +168,7 @@ class Dev_Suite {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Dev_Suite_Public( $this->get_Dev_Suite(), $this->get_version() );
+		$plugin_public = new Dev_Suite_Public( $this->get_dev_suite(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -191,7 +191,7 @@ class Dev_Suite {
 	 * @since     1.0.0
 	 * @return    string    The name of the plugin.
 	 */
-	public function get_Dev_Suite() {
+	public function get_dev_suite() {
 		return $this->Dev_Suite;
 	}
 

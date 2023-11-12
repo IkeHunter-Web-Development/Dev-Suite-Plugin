@@ -38,19 +38,19 @@ define( 'DEV_SUITE_VERSION', '1.0.0' );
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-plugin-name-activator.php
+ * This action is documented in includes/class-dev-suite-activator.php
  */
 function activate_dev_suite() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name-activator.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-dev-suite-activator.php';
 	Dev_Suite_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-plugin-name-deactivator.php
+ * This action is documented in includes/class-dev-suite-deactivator.php
  */
 function deactivate_dev_suite() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name-deactivator.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-dev-suite-deactivator.php';
 	Dev_Suite_Deactivator::deactivate();
 }
 

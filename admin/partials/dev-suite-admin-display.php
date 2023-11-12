@@ -14,3 +14,14 @@
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
+<div class="wrap">
+  <h1>Development Suite</h1>
+  
+  <form action="options.php" method="post">
+    <?php
+      settings_fields('dev_suite_settings');
+      do_settings_sections('dev_suite_settings');
+      submit_button();
+    ?>
+  </form>
+</div>
