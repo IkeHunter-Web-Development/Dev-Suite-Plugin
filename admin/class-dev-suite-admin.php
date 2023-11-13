@@ -66,6 +66,8 @@ class Dev_Suite_Admin {
     add_action('admin_menu', array($this, 'add_admin_menu'));
     add_action('admin_init', array($this, 'register_settings'));
     add_action('admin_enqueue_scripts', array($this, 'dev_suite_admin_scripts'));
+    
+    add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts'));
   }
 
   /**
@@ -128,7 +130,13 @@ class Dev_Suite_Admin {
       'dashicons-admin-tools',
       3
     );
-
+    add_submenu_page(
+      $this->Dev_Suite,
+      'Documentation',
+      'Documentation',
+      'manage_options',
+      '#docs',
+    );
     add_submenu_page(
       $this->Dev_Suite,
       'Settings',
@@ -193,6 +201,13 @@ class Dev_Suite_Admin {
       array('wp-element'),
       filemtime(plugin_dir_path(__FILE__) . 'app/build/index.js'),
       true
+    );
+    wp_enqueue_style(
+      'dev-suite-admin',
+      plugin_dir_url(__FILE__) . 'app/build/index.css',
+      array(),
+      filemtime(plugin_dir_path(__FILE__) . 'app/build/index.css'),
+      'all'
     );
   }
 
