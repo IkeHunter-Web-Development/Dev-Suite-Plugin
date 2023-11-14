@@ -24,7 +24,7 @@
  * Domain Path:       /languages
  */
 
- // If this file is called directly, abort.
+// If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
@@ -78,4 +78,68 @@ function run_dev_suite() {
 	$plugin->run();
 
 }
+
 run_dev_suite();
+
+//add_filter( 'screen_settings', function ( $screen_settings, $screen ) {
+//	global $wp_meta_boxes;
+//
+////	$wp_meta_boxes .= '<h2>Development Suite Settings</h2>';
+////	$screen->add_help_tab( array(
+////		'id'       => 'dev-suite-help',
+////		'title'    => 'Development Suite',
+////		'content'  => '<p>Development Suite is a plugin that provides a suite of tools to aid and enhance WordPress development.</p>',
+////		'callback' => function () {
+////			echo '<h1>Development Suite</h1>';
+////		}
+////	) );
+//
+////	$screen_settings .= '<h2>Development Suite Settings</h2>';
+//
+//
+//	return $screen_settings;
+//}, 10, 2 );
+
+function test_notice_1() {
+	?>
+    <div class="notice notice-error">
+        <h2>Test Notice 1</h2>
+        <p>This is a test notice.</p>
+    </div>
+	<?php
+}
+
+function test_notice_2() {
+	?>
+    <div class="notice notice-success is-dismissible">
+        <h2>Test Notice 2</h2>
+        <p>This is a test notice.</p>
+    </div>
+	<?php
+}
+
+function test_notice_3() {
+	?>
+    <div class="notice notice-warning is-dismissible">
+        <h2>Test Notice 3</h2>
+        <p>This is a test notice.</p>
+    </div>
+	<?php
+}
+
+function test_notice_4() {
+	?>
+    <div class="notice notice-info is-dismissible">
+        <h2>Test Notice 4</h2>
+        <p>This is a test notice.</p>
+    </div>
+	<?php
+}
+
+add_action( 'admin_notices', 'test_notice_1' );
+add_action( 'admin_notices', 'test_notice_2' );
+add_action( 'admin_notices', 'test_notice_3' );
+add_action( 'admin_notices', 'test_notice_4' );
+
+
+

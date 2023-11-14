@@ -7,6 +7,7 @@ class Dev_Suite_Admin_Notices {
 		// add_action('admin_init', array($this, 'set_staging_mode'));
 //    add_action('admin_notices', array($this, 'show_staging_notice'));
 		add_action( 'admin_init', array( $this, 'show_staging_notice' ) );
+		add_action( 'admin_notices', array( $this, 'collapse_notices' ) );
 	}
 
 	public function create_staging_notice_option() {
@@ -40,5 +41,14 @@ class Dev_Suite_Admin_Notices {
 			esc_html( $message ),
 			esc_html( $title )
 		);
+	}
+
+	public function collapse_notices() {
+		?>
+        <div id="notices-dock">
+            <div id="notices-dock__body"></div>
+        </div>
+        <button type="button" id="notices-dock__toggle">Notifications</button>
+		<?php
 	}
 }
