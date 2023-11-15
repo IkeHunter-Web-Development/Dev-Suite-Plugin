@@ -10,6 +10,7 @@
  * @subpackage Dev_Suite/admin
  */
 require_once plugin_dir_path( __FILE__ ) . 'class-dev-suite-admin-notices.php';
+require_once plugin_dir_path( __FILE__ ) . 'class-dev-suite-admin-dashboard-widgets.php';
 
 /**
  * The admin-specific functionality of the plugin.
@@ -61,7 +62,8 @@ class Dev_Suite_Admin {
 		$this->Dev_Suite = $Dev_Suite;
 		$this->version   = $version;
 
-		$this->admin_notices = new Dev_Suite_Admin_Notices();
+		$this->admin_notices     = new Dev_Suite_Admin_Notices();
+		$this->dashboard_widgets = new Dashboard_Widgets();
 
 		add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
