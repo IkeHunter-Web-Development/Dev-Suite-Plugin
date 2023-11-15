@@ -4281,6 +4281,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function App() {
   console.log('App');
+  console.log('app again');
   return (
     // <BrowserRouter basename='/wp-admin/admin.php'>
     //   <Routes>

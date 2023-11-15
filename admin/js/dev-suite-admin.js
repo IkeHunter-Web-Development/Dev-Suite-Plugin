@@ -29,26 +29,57 @@
      * practising this, we should strive to set a better example in our own work.
      */
 
-    $(window).load(() => {
-        const notices = $('.notice');
-        const clones = []
-        const dock = $('#notices-dock');
-        const dockBody = $('#notices-dock__body');
-        const dockToggle = $('#notices-dock__toggle');
+    const waitForElement = (selector) => {
+        return new Promise((resolve, reject) => {
+            const element = $(selector);
+            if (element.length) {
+                resolve(element);
+                return;
+            }
 
-        $(document).on('DOMNodeInserted', '.notice', (e) => {
-            console.log('notice inserted: ', e.target);
-            const notice = $(e.target);
+            const observer = new MutationObserver((mutations) => {
+                const element = $(selector);
+                if (element.length) {
+                    resolve(element);
+                    observer.disconnect();
+                }
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true,
+            });
+        });
+    }
+
+
+    const onElementLoad = (selector, callback) => {
+        const observer = new MutationObserver((mutations) => {
+            const element = $(selector);
+            if (element.length) {
+                callback(element);
+                // observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+        });
+    }
+
+
+    $(window).load(async () => {
+        const dock = await waitForElement('#notices-dock');
+        const dockBody = await waitForElement('#notices-dock__body');
+        const dockToggle = await waitForElement('#notices-dock__toggle');
+
+        onElementLoad('.notice', (notice) => {
+            if (notice.hasClass('docked')) return;
+
             dockBody.append(notice);
             notice.addClass('docked');
         });
-
-
-        for (let notice of notices) {
-            console.log('notice: ', notice);
-            dockBody.append($(notice));
-            $(notice).addClass('docked');
-        }
 
         const handleDockOpen = () => {
             if (dock.hasClass('active')) {
