@@ -1,5 +1,7 @@
 <?php
 
+namespace Dev_Suite\Admin;
+
 class Dashboard_Widgets {
 	public function __construct() {
 		add_action( 'wp_dashboard_setup', array( $this, 'remove_welcome' ) );

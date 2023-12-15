@@ -13,6 +13,10 @@
  * @subpackage Dev_Suite/includes
  */
 
+namespace Dev_Suite;
+
+use Dev_Suite\Admin\Admin;
+
 /**
  * The core plugin class.
  *
@@ -35,27 +39,29 @@ class Dev_Suite {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Dev_Suite_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Dev_Suite_Loader $loader Maintains and registers all hooks for the plugin.
 	 */
-	protected $loader;
+	protected Dev_Suite_Loader $loader;
 
 	/**
 	 * The unique identifier of this plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $Dev_Suite    The string used to uniquely identify this plugin.
+	 * @var      string $Dev_Suite The string used to uniquely identify this plugin.
 	 */
-	protected $Dev_Suite;
+	protected string $Dev_Suite;
+
+	public static Dev_Suite $instance;
 
 	/**
 	 * The current version of the plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $version    The current version of the plugin.
+	 * @var      string $version The current version of the plugin.
 	 */
-	protected $version;
+	protected string $version;
 
 	/**
 	 * Define the core functionality of the plugin.
@@ -77,7 +83,7 @@ class Dev_Suite {
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
-		$this->define_public_hooks();
+//		$this->define_public_hooks();
 
 	}
 
@@ -103,24 +109,24 @@ class Dev_Suite {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-dev-suite-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/dev-suite-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-dev-suite-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/dev-suite-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-dev-suite-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-dev-suite-public.php';
+//		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/dev-suite-public.php';
 
 		$this->loader = new Dev_Suite_Loader();
 
@@ -152,7 +158,7 @@ class Dev_Suite {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Dev_Suite_Admin( $this->get_dev_suite(), $this->get_version() );
+		$plugin_admin = new Admin( $this->get_dev_suite(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -166,13 +172,21 @@ class Dev_Suite {
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function define_public_hooks() {
+//	private function define_public_hooks() {
+//
+//		$plugin_public = new Dev_Suite_Public( $this->get_dev_suite(), $this->get_version() );
+//
+//		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+//		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+//
+//	}
 
-		$plugin_public = new Dev_Suite_Public( $this->get_dev_suite(), $this->get_version() );
+	public static function instance() {
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new Dev_Suite();
+		}
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
+		return self::$instance;
 	}
 
 	/**
@@ -188,8 +202,8 @@ class Dev_Suite {
 	 * The name of the plugin used to uniquely identify it within the context of
 	 * WordPress and to define internationalization functionality.
 	 *
-	 * @since     1.0.0
 	 * @return    string    The name of the plugin.
+	 * @since     1.0.0
 	 */
 	public function get_dev_suite() {
 		return $this->Dev_Suite;
@@ -198,8 +212,8 @@ class Dev_Suite {
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
-	 * @since     1.0.0
 	 * @return    Dev_Suite_Loader    Orchestrates the hooks of the plugin.
+	 * @since     1.0.0
 	 */
 	public function get_loader() {
 		return $this->loader;
@@ -208,11 +222,13 @@ class Dev_Suite {
 	/**
 	 * Retrieve the version number of the plugin.
 	 *
-	 * @since     1.0.0
 	 * @return    string    The version number of the plugin.
+	 * @since     1.0.0
 	 */
 	public function get_version() {
 		return $this->version;
 	}
 
 }
+
+Dev_Suite::instance()->run();

@@ -35,14 +35,17 @@ if ( ! defined( 'WPINC' ) ) {
  * Rename this for your plugin and update it as you release new versions.
  */
 define( 'DEV_SUITE_VERSION', '1.0.0' );
+define( 'DEV_SUITE_PLUGIN_NAME', 'The Development Suite' );
+define( 'DEV_SUITE_PLUGIN_SLUG', 'dev-suite' );
+define( 'DEV_SUITE_DIR', plugin_dir_path( __FILE__ ) );
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-dev-suite-activator.php
  */
 function activate_dev_suite() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-dev-suite-activator.php';
-	Dev_Suite_Activator::activate();
+	require_once plugin_dir_path( __FILE__ ) . 'includes/dev-suite-activator.php';
+//	Dev_Suite_Activator::activate();
 }
 
 /**
@@ -50,8 +53,8 @@ function activate_dev_suite() {
  * This action is documented in includes/class-dev-suite-deactivator.php
  */
 function deactivate_dev_suite() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-dev-suite-deactivator.php';
-	Dev_Suite_Deactivator::deactivate();
+	require_once plugin_dir_path( __FILE__ ) . 'includes/dev-suite-deactivator.php';
+//	Dev_Suite_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_dev_suite' );
@@ -61,7 +64,7 @@ register_deactivation_hook( __FILE__, 'deactivate_dev_suite' );
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-dev-suite.php';
+//require plugin_dir_path( __FILE__ ) . 'includes/dev-suite.php';
 
 /**
  * Begins execution of the plugin.
@@ -74,8 +77,9 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-dev-suite.php';
  */
 function run_dev_suite() {
 
-	$plugin = new Dev_Suite();
-	$plugin->run();
+//	$plugin = new Dev_Suite();
+//	$plugin->run();
+	require DEV_SUITE_DIR . './includes/dev-suite.php';
 
 }
 

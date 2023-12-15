@@ -1,5 +1,6 @@
 <?php
 
+namespace Dev_Suite\Admin;
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -9,8 +10,8 @@
  * @package    Dev_Suite
  * @subpackage Dev_Suite/admin
  */
-require_once plugin_dir_path( __FILE__ ) . 'class-dev-suite-admin-notices.php';
-require_once plugin_dir_path( __FILE__ ) . 'class-dev-suite-admin-dashboard-widgets.php';
+require_once plugin_dir_path( __FILE__ ) . 'admin-notices.php';
+require_once plugin_dir_path( __FILE__ ) . 'admin-dashboard-widgets.php';
 
 /**
  * The admin-specific functionality of the plugin.
@@ -22,7 +23,7 @@ require_once plugin_dir_path( __FILE__ ) . 'class-dev-suite-admin-dashboard-widg
  * @subpackage Dev_Suite/admin
  * @author     Your Name <email@example.com>
  */
-class Dev_Suite_Admin {
+class Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -221,7 +222,7 @@ class Dev_Suite_Admin {
 	 * @since 1.0.0
 	 */
 	public function dev_suite_settings_page() {
-		include_once 'partials/dev-suite-admin-settings.php';
+		include_once 'partials/admin-settings.php';
 	}
 
 	public function render_settings_section() {

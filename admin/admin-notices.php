@@ -1,5 +1,7 @@
 <?php
 
+namespace Dev_Suite\Admin;
+
 class Dev_Suite_Admin_Notices {
 	public function __construct() {
 		// add_action('admin_notices', array($this, 'admin_notice'));

@@ -13,6 +13,7 @@
  * @subpackage Dev_Suite/includes
  */
 
+namespace Dev_Suite;
 /**
  * Define the internationalization functionality.
  *
@@ -41,7 +42,6 @@ class Dev_Suite_i18n {
 		);
 
 	}
-
 
 
 }
