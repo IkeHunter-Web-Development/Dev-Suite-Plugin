@@ -29,11 +29,6 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-/**
- * Currently plugin version.
- * Start at version 1.0.0 and use SemVer - https://semver.org
- * Rename this for your plugin and update it as you release new versions.
- */
 define( 'DEV_SUITE_VERSION', '1.0.0' );
 define( 'DEV_SUITE_PLUGIN_NAME', 'The Development Suite' );
 define( 'DEV_SUITE_PLUGIN_SLUG', 'dev-suite' );
@@ -41,68 +36,34 @@ define( 'DEV_SUITE_DIR', plugin_dir_path( __FILE__ ) );
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-dev-suite-activator.php
+ * This action is documented in includes/dev-suite-activator.php
  */
 function activate_dev_suite() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/dev-suite-activator.php';
-//	Dev_Suite_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-dev-suite-deactivator.php
+ * This action is documented in includes/dev-suite-deactivator.php
  */
 function deactivate_dev_suite() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/dev-suite-deactivator.php';
-//	Dev_Suite_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_dev_suite' );
 register_deactivation_hook( __FILE__, 'deactivate_dev_suite' );
 
 /**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
-//require plugin_dir_path( __FILE__ ) . 'includes/dev-suite.php';
-
-/**
  * Begins execution of the plugin.
- *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
  *
  * @since    1.0.0
  */
 function run_dev_suite() {
-
-//	$plugin = new Dev_Suite();
-//	$plugin->run();
 	require DEV_SUITE_DIR . './includes/dev-suite.php';
-
 }
 
 run_dev_suite();
 
-//add_filter( 'screen_settings', function ( $screen_settings, $screen ) {
-//	global $wp_meta_boxes;
-//
-////	$wp_meta_boxes .= '<h2>Development Suite Settings</h2>';
-////	$screen->add_help_tab( array(
-////		'id'       => 'dev-suite-help',
-////		'title'    => 'Development Suite',
-////		'content'  => '<p>Development Suite is a plugin that provides a suite of tools to aid and enhance WordPress development.</p>',
-////		'callback' => function () {
-////			echo '<h1>Development Suite</h1>';
-////		}
-////	) );
-//
-////	$screen_settings .= '<h2>Development Suite Settings</h2>';
-//
-//
-//	return $screen_settings;
-//}, 10, 2 );
 
 function test_notice_1() {
 	?>

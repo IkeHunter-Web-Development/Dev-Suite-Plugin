@@ -122,12 +122,6 @@ class Dev_Suite {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/admin.php';
 
-		/**
-		 * The class responsible for defining all actions that occur in the public-facing
-		 * side of the site.
-		 */
-//		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/dev-suite-public.php';
-
 		$this->loader = new Dev_Suite_Loader();
 
 	}
@@ -164,22 +158,6 @@ class Dev_Suite {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
 	}
-
-	/**
-	 * Register all of the hooks related to the public-facing functionality
-	 * of the plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-//	private function define_public_hooks() {
-//
-//		$plugin_public = new Dev_Suite_Public( $this->get_dev_suite(), $this->get_version() );
-//
-//		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-//		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-//
-//	}
 
 	public static function instance() {
 		if ( ! isset( self::$instance ) ) {
