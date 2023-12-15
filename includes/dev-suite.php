@@ -80,6 +80,9 @@ class Dev_Suite {
 		}
 		$this->Dev_Suite = 'dev-suite';
 
+		require DEV_SUITE_DIR . 'includes/dev-suite-autoloader.php';
+		Dev_Suite_Autoloader::run();
+
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();

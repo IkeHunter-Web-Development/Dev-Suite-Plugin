@@ -72,7 +72,7 @@ class Admin {
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
-		add_action( 'admin_init', array( $this, 'get_posts_broken_shortcodes' ) );
+//		add_action( 'admin_init', array( $this, 'get_posts_broken_shortcodes' ) );
 	}
 
 	/**
@@ -120,6 +120,28 @@ class Admin {
 	}
 
 	/**
+	 * Add admin scripts
+	 *
+	 * @since 1.0.0
+	 */
+	public function dev_suite_admin_scripts() {
+		wp_enqueue_script(
+			'dev-suite-admin',
+			plugin_dir_url( __FILE__ ) . 'app/build/index.js',
+			array( 'wp-element' ),
+			filemtime( plugin_dir_path( __FILE__ ) . 'app/build/index.js' ),
+			true
+		);
+		wp_enqueue_style(
+			'dev-suite-admin',
+			plugin_dir_url( __FILE__ ) . 'app/build/index.css',
+			array(),
+			filemtime( plugin_dir_path( __FILE__ ) . 'app/build/index.css' ),
+			'all'
+		);
+	}
+
+	/**
 	 * Add admin menu item.
 	 *
 	 * @since 1.0.0
@@ -141,6 +163,14 @@ class Admin {
 			'Documentation',
 			'manage_options',
 			'#docs',
+		);
+		add_submenu_page(
+			$this->Dev_Suite,
+			'Website Health',
+			'Health',
+			'manage_options',
+			'site_health',
+			array( $this, 'site_health' )
 		);
 		add_submenu_page(
 			$this->Dev_Suite,
@@ -195,34 +225,21 @@ class Admin {
 	}
 
 	/**
-	 * Add admin scripts
-	 *
-	 * @since 1.0.0
-	 */
-	public function dev_suite_admin_scripts() {
-		wp_enqueue_script(
-			'dev-suite-admin',
-			plugin_dir_url( __FILE__ ) . 'app/build/index.js',
-			array( 'wp-element' ),
-			filemtime( plugin_dir_path( __FILE__ ) . 'app/build/index.js' ),
-			true
-		);
-		wp_enqueue_style(
-			'dev-suite-admin',
-			plugin_dir_url( __FILE__ ) . 'app/build/index.css',
-			array(),
-			filemtime( plugin_dir_path( __FILE__ ) . 'app/build/index.css' ),
-			'all'
-		);
-	}
-
-	/**
 	 * Settings page.
 	 *
 	 * @since 1.0.0
 	 */
 	public function dev_suite_settings_page() {
 		include_once 'partials/admin-settings.php';
+	}
+
+	/**
+	 * Website Health page.
+	 *
+	 * @since 1.0.0
+	 */
+	public function site_health() {
+		include_once 'partials/site-health.php';
 	}
 
 	public function render_settings_section() {
@@ -254,64 +271,5 @@ class Admin {
 		}
 	}
 
-	public function get_posts_broken_shortcodes() {
-		if ( isset( $_REQUEST['get_shortcodes'] ) ) {
-			$args = array(
-				//Type & Status Parameters
-				'post_type'      => array( 'post', 'page' ),
-				'post_status'    => 'any',
 
-				//Pagination Parameters
-				'posts_per_page' => - 1,
-			);
-
-			// In case we have a huge Database
-			set_time_limit( 0 );
-
-			$query = new WP_Query( $args );
-			$posts = array();
-
-			if ( $query->have_posts() ) {
-				while ( $query->have_posts() ) {
-					$query->the_post();
-					ob_start();
-
-					the_content();
-					// Getting the parsed content
-					// where all registered shortcodes have been replaced
-					$output = ob_get_clean();
-
-					// Checking for a shortcode pattern
-					preg_match_all( '@\[([^<>&/\[\]\x00-\x20=]++)@', $output, $matches );
-					// If any match, add it to array
-					if ( $matches[0] ) {
-						$posts[] = array(
-							'id'        => get_the_id(),
-							'link'      => get_permalink(),
-							'shortcode' => $matches[1][0]
-						);
-					}
-				}
-				wp_reset_postdata();
-			}
-
-			echo 'Possible Unused Shortcodes<br/>';
-			if ( $posts ) {
-				echo '<ul>';
-				foreach ( $posts as $unused ) {
-					echo '<li>';
-					// Admin URL so we can edit it immediately
-					echo '<a href="' . admin_url( 'post.php?post=' . $unused['id'] . '&action=edit' ) . '" >';
-					echo $unused['link'] . '</a>';
-					// Showing the possible unused shortcode
-					echo ' - ' . $unused['shortcode'];
-					echo '</li>';
-				}
-				echo '</ul>';
-			} else {
-				echo 'No unused shortcodes. Good Work!';
-			}
-			die();
-		}
-	}
 }
