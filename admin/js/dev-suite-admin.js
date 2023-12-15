@@ -29,70 +29,9 @@
      * practising this, we should strive to set a better example in our own work.
      */
 
-    const waitForElement = (selector) => {
-        return new Promise((resolve, reject) => {
-            const element = $(selector);
-            if (element.length) {
-                resolve(element);
-                return;
-            }
-
-            const observer = new MutationObserver((mutations) => {
-                const element = $(selector);
-                if (element.length) {
-                    resolve(element);
-                    observer.disconnect();
-                }
-            });
-
-            observer.observe(document.body, {
-                childList: true,
-                subtree: true,
-            });
-        });
-    }
-
-
-    const onElementLoad = (selector, callback) => {
-        const observer = new MutationObserver((mutations) => {
-            const element = $(selector);
-            if (element.length) {
-                callback(element);
-                // observer.disconnect();
-            }
-        });
-
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true,
-        });
-    }
-
 
     $(window).load(async () => {
-        const dock = await waitForElement('#notices-dock');
-        const dockBody = await waitForElement('#notices-dock__body');
-        const dockToggle = await waitForElement('#notices-dock__toggle');
 
-        onElementLoad('.notice', (notice) => {
-            if (notice.hasClass('docked')) return;
-
-            dockBody.append(notice);
-            notice.addClass('docked');
-        });
-
-        const handleDockOpen = () => {
-            if (dock.hasClass('active')) {
-                dock.removeClass('active');
-            } else {
-                dock.addClass('active');
-            }
-
-        }
-
-        dockToggle.on('click', () => {
-            handleDockOpen();
-        });
     });
 
     console.log("dev-suite-admin.js loaded");

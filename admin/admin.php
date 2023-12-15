@@ -58,12 +58,12 @@ class Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function __construct( $Dev_Suite, $version ) {
+	public function __construct( string $Dev_Suite, string $version ) {
 
 		$this->Dev_Suite = $Dev_Suite;
 		$this->version   = $version;
 
-		$this->admin_notices     = new Dev_Suite_Admin_Notices();
+		$this->admin_notices     = new Dev_Suite_Admin_Notices( $Dev_Suite );
 		$this->dashboard_widgets = new Dashboard_Widgets();
 
 		add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
@@ -73,6 +73,7 @@ class Admin {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 //		add_action( 'admin_init', array( $this, 'get_posts_broken_shortcodes' ) );
+		$this->handle_options();
 	}
 
 	/**
@@ -157,13 +158,13 @@ class Admin {
 			'dashicons-admin-tools',
 			3
 		);
-		add_submenu_page(
-			$this->Dev_Suite,
-			'Documentation',
-			'Documentation',
-			'manage_options',
-			'#docs',
-		);
+//		add_submenu_page(
+//			$this->Dev_Suite,
+//			'Documentation',
+//			'Documentation',
+//			'manage_options',
+//			'#docs',
+//		);
 		add_submenu_page(
 			$this->Dev_Suite,
 			'Website Health',
@@ -203,6 +204,7 @@ class Admin {
 			'value_type' => 'bool',
 			'wp_data'    => 'option',
 		);
+
 		add_settings_field(
 			'dev_suite_staging_mode',
 			'Staging Mode',
@@ -211,8 +213,38 @@ class Admin {
 			'dev_suite_settings',
 			$args
 		);
-
 		register_setting( 'dev_suite_settings', 'dev_suite_staging_mode' );
+
+		add_settings_field(
+			'dev_suite_dock_notices',
+			'Dock Notices',
+			array( $this, 'render_settings_section' ),
+			'dev_suite_settings',
+			'dev_suite_settings',
+			array(
+				'type'       => 'input',
+				'subtype'    => 'checkbox',
+				'id'         => 'dev_suite_dock_notices',
+				'name'       => 'dev_suite_dock_notices',
+				'label'      => 'Dock Notices',
+				'value_type' => 'bool',
+				'wp_data'    => 'option',
+			)
+		);
+		register_setting( 'dev_suite_settings', 'dev_suite_dock_notices' );
+	}
+
+	public function handle_options() {
+		$staging_mode = get_option( 'dev_suite_staging_mode' );
+		if ( $staging_mode ) {
+			add_action( 'admin_init', array( $this->admin_notices, 'show_staging_notice' ) );
+		}
+
+		$dock_notices = get_option( 'dev_suite_dock_notices' );
+		if ( $dock_notices ) {
+			add_action( 'admin_enqueue_scripts', array( $this->admin_notices, 'enqueue_dock_notices_scripts' ) );
+			add_action( 'admin_notices', array( $this->admin_notices, 'collapse_notices' ) );
+		}
 	}
 
 	/**

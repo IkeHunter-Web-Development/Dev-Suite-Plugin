@@ -3,13 +3,33 @@
 namespace Dev_Suite\Admin;
 
 class Dev_Suite_Admin_Notices {
-	public function __construct() {
+	/**
+	 * The ID of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string $Dev_Suite The ID of this plugin.
+	 */
+	private string $Dev_Suite;
+
+	/**
+	 * The version of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string $version The current version of this plugin.
+	 */
+	private string $version;
+
+	public function __construct( $Dev_Suite ) {
 		// add_action('admin_notices', array($this, 'admin_notice'));
 		// add_action('admin_init', array($this, 'create_staging_notice_option'));
 		// add_action('admin_init', array($this, 'set_staging_mode'));
 //    add_action('admin_notices', array($this, 'show_staging_notice'));
-		add_action( 'admin_init', array( $this, 'show_staging_notice' ) );
-		add_action( 'admin_notices', array( $this, 'collapse_notices' ) );
+//		add_action( 'admin_init', array( $this, 'show_staging_notice' ) );
+//		add_action( 'admin_notices', array( $this, 'collapse_notices' ) );
+		$this->Dev_Suite = $Dev_Suite;
+		$this->version   = DEV_SUITE_VERSION;
 	}
 
 	public function create_staging_notice_option() {
@@ -21,10 +41,11 @@ class Dev_Suite_Admin_Notices {
 	}
 
 	public function show_staging_notice() {
-		$staging_mode = get_option( 'dev_suite_staging_mode' );
-		if ( $staging_mode ) {
-			add_action( 'admin_notices', array( $this, 'admin_notice' ) );
-		}
+		add_action( 'admin_notices', array( $this, 'admin_notice' ) );
+//		$staging_mode = get_option( 'dev_suite_staging_mode' );
+//		if ( $staging_mode ) {
+//			add_action( 'admin_notices', array( $this, 'admin_notice' ) );
+//		}
 	}
 
 	public function admin_notice() {
@@ -46,11 +67,17 @@ class Dev_Suite_Admin_Notices {
 	}
 
 	public function collapse_notices() {
+
 		?>
         <div id="notices-dock">
             <div id="notices-dock__body"></div>
         </div>
         <button type="button" id="notices-dock__toggle">Notifications</button>
 		<?php
+	}
+
+	public function enqueue_dock_notices_scripts() {
+		wp_enqueue_script( $this->Dev_Suite . '-dock-notices', plugin_dir_url( __FILE__ ) . 'js/dock-notices.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_style( $this->Dev_Suite . '-dock-notices', plugin_dir_url( __FILE__ ) . 'css/dock-notices.css', array(), $this->version, 'all' );
 	}
 }
