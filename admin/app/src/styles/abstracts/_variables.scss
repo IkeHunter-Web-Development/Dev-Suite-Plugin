@@ -1,0 +1,26 @@
+/** Global Colors */
+// Brand
+$azure: #2A88E0;
+$charcoal: #232323;
+$navy: #012F4C;
+$steel: #8D95A6;
+$smoke: #E9E9E9;
+$navy-to-charcoal: linear-gradient(91deg, #012F4C 43.31%, #232323 100%);
+
+// System
+$color-info: #5BB1E1;
+$color-success: #27D06B;
+$color-danger: #DE7A64;
+// $color-warning: #EEE05D;
+$color-warning: #CEC454;
+$white: #ffffff;
+$off-white: #F5F5F5;
+$black: #000000;
+
+/** Global Definitions */
+$border-size: 2px;
+$transition-duration: .2s;
+$gutter: 2rem;
+$gap: 2rem;
+$content-width: 1240px;
+$header-height: 15rem;

@@ -1,0 +1,15 @@
+.inline-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  & li {
+    font-family: Montserrat;
+    font-size: 1.3rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.014rem;
+  }
+}

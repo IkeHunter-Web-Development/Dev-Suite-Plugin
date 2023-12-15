@@ -8,6 +8,9 @@ class Dashboard_Widgets {
 
 	public function remove_welcome() {
 		remove_action( 'welcome_panel', 'wp_welcome_panel' );
+		add_action( 'welcome_panel', function () {
+			include_once 'app/templates/welcome-panel.php';
+		} );
 	}
 
 	public function render_top_widget() {
@@ -19,5 +22,10 @@ class Dashboard_Widgets {
 
 		global $wp_meta_boxes;
 		$default_dashboard = $wp_meta_boxes['dashboard']['normal']['core'];
+		$new_widget_backup = array( 'dev-suite-welcome' => $default_dashboard['dev-suite-welcome'] );
+		unset( $default_dashboard['dev-suite-welcome'] );
+
+		$sorted_dashboard                             = array_merge( $new_widget_backup, $default_dashboard );
+		$wp_meta_boxes['dashboard']['normal']['core'] = $sorted_dashboard;
 	}
 }

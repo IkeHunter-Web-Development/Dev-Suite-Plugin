@@ -1,0 +1,137 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* ================ */
+/* Font Definitions */
+/* ================ */
+
+/** Primary Typography */
+@mixin heading-1 {
+  font-family: Rubik;
+  font-size: 4.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 4.25rem;
+  letter-spacing: -0.05rem;
+}
+// h1,
+.heading-1,
+*[class*="heading-1"] {
+  font-family: Rubik;
+  font-size: 4.25rem !important;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 4.25rem;
+  letter-spacing: -0.05rem;
+  // @include heading-1;
+}
+
+// h2,
+.heading-2,
+*[class*="heading-2"] {
+  font-family: Rubik;
+  font-size: 3.7rem !important;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.111rem;
+}
+
+// h3,
+.heading-3,
+*[class*="heading-3"] {
+  font-family: Rubik;
+  font-size: 2.8rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.14rem;
+}
+
+// h4,
+.heading-4,
+*[class*="heading-4"] {
+  font-family: Montserrat;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.02rem;
+}
+
+// p,
+// div,
+// span,
+.paragraph {
+  font-family: Montserrat;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2.6rem; /* 162.5% */
+}
+
+/** Other Typography */
+.label,
+*[class*="label"] {
+  font-family: Montserrat;
+  font-size: 1.3rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.015rem;
+  text-transform: uppercase;
+}
+.sub-menu-item,
+*[class*="sub-menu-item"] {
+  font-family: Montserrat;
+  font-size: 2.2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.11rem;
+}
+.label-small,
+*[class*="label-small"] {
+  font-family: Montserrat;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.01rem;
+  text-transform: uppercase;
+}
+.info-text-bold,
+*[class*="info-text-bold"] {
+  font-family: Montserrat;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.014rem;
+}
+.info-text-regular,
+*[class*="info-text-regular"] {
+  font-family: Montserrat;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.014rem;
+}
+.info-header,
+*[class*="info-header"] {
+  font-family: Montserrat;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2.6rem;
+  letter-spacing: 0.016rem;
+}
+
+/* ================= */
+/* Color Definitions */
+/* ================= */
+
+.white,
+*[class*="--white"] {
+  color: $white;
+}
