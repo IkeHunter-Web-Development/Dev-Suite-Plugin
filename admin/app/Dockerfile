@@ -14,4 +14,4 @@ COPY ./templates/ ./templates
 
 RUN npm run build
 
-VOLUME /var/www/html/wp-content/plugins/Development-Suite/admin/app/dist
+VOLUME /var/www/html/wp-content/plugins/Development-Suite/admin/app
