@@ -3,9 +3,9 @@
  * Page to view website health.
  */
 
-//namespace Dev_Suite\Admin;
+//namespace Cobolt\Admin;
 
-use Dev_Suite\Admin\Modules\Health;
+use Cobolt\Admin\Modules\Health;
 
 $health            = new Health();
 $broken_shortcodes = $health->get_posts_broken_shortcodes();

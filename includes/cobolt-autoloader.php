@@ -1,9 +1,9 @@
 <?php
 
 
-namespace Dev_Suite;
+namespace Cobolt;
 
-class Dev_Suite_Autoloader {
+class Cobolt_Autoloader {
 
 	private static string $default_path;
 
@@ -11,7 +11,7 @@ class Dev_Suite_Autoloader {
 
 	public static function run( $default_path = '', $default_namespace = '' ) {
 		if ( '' === $default_path ) {
-			$default_path = DEV_SUITE_DIR;
+			$default_path = COBOLT_DIR;
 		}
 
 		if ( '' === $default_namespace ) {

@@ -9,13 +9,13 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Dev_Suite
- * @subpackage Dev_Suite/includes
+ * @package    Cobolt
+ * @subpackage Cobolt/includes
  */
 
-namespace Dev_Suite;
+namespace Cobolt;
 
-use Dev_Suite\Admin\Admin;
+use Cobolt\Admin\Admin;
 
 /**
  * The core plugin class.
@@ -27,11 +27,11 @@ use Dev_Suite\Admin\Admin;
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Dev_Suite
- * @subpackage Dev_Suite/includes
+ * @package    Cobolt
+ * @subpackage Cobolt/includes
  * @author     Your Name <email@example.com>
  */
-class Dev_Suite {
+class Cobolt {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -39,20 +39,20 @@ class Dev_Suite {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Dev_Suite_Loader $loader Maintains and registers all hooks for the plugin.
+	 * @var      Cobolt_Loader $loader Maintains and registers all hooks for the plugin.
 	 */
-	protected Dev_Suite_Loader $loader;
+	protected Cobolt_Loader $loader;
 
 	/**
 	 * The unique identifier of this plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string $Dev_Suite The string used to uniquely identify this plugin.
+	 * @var      string $Cobolt The string used to uniquely identify this plugin.
 	 */
-	protected string $Dev_Suite;
+	protected string $Cobolt;
 
-	public static Dev_Suite $instance;
+	public static Cobolt $instance;
 
 	/**
 	 * The current version of the plugin.
@@ -73,15 +73,15 @@ class Dev_Suite {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'DEV_SUITE_VERSION' ) ) {
-			$this->version = DEV_SUITE_VERSION;
+		if ( defined( 'COBOLT_VERSION' ) ) {
+			$this->version = COBOLT_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->Dev_Suite = 'dev-suite';
+		$this->Cobolt = 'cobolt';
 
-		require DEV_SUITE_DIR . 'includes/dev-suite-autoloader.php';
-		Dev_Suite_Autoloader::run();
+		require COBOLT_DIR . 'includes/cobolt-autoloader.php';
+		Cobolt_Autoloader::run();
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -95,10 +95,10 @@ class Dev_Suite {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Dev_Suite_Loader. Orchestrates the hooks of the plugin.
-	 * - Dev_Suite_i18n. Defines internationalization functionality.
-	 * - Dev_Suite_Admin. Defines all hooks for the admin area.
-	 * - Dev_Suite_Public. Defines all hooks for the public side of the site.
+	 * - Cobolt_Loader. Orchestrates the hooks of the plugin.
+	 * - Cobolt_i18n. Defines internationalization functionality.
+	 * - Cobolt_Admin. Defines all hooks for the admin area.
+	 * - Cobolt_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -112,27 +112,27 @@ class Dev_Suite {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/dev-suite-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/cobolt-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/dev-suite-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/cobolt-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/admin.php';
 
-		$this->loader = new Dev_Suite_Loader();
+		$this->loader = new Cobolt_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Dev_Suite_i18n class in order to set the domain and to register the hook
+	 * Uses the Cobolt_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -140,7 +140,7 @@ class Dev_Suite {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Dev_Suite_i18n();
+		$plugin_i18n = new Cobolt_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -155,7 +155,7 @@ class Dev_Suite {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Admin( $this->get_dev_suite(), $this->get_version() );
+		$plugin_admin = new Admin( $this->get_cobolt(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -164,7 +164,7 @@ class Dev_Suite {
 
 	public static function instance() {
 		if ( ! isset( self::$instance ) ) {
-			self::$instance = new Dev_Suite();
+			self::$instance = new Cobolt();
 		}
 
 		return self::$instance;
@@ -186,14 +186,14 @@ class Dev_Suite {
 	 * @return    string    The name of the plugin.
 	 * @since     1.0.0
 	 */
-	public function get_dev_suite() {
-		return $this->Dev_Suite;
+	public function get_cobolt() {
+		return $this->Cobolt;
 	}
 
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
-	 * @return    Dev_Suite_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Cobolt_Loader    Orchestrates the hooks of the plugin.
 	 * @since     1.0.0
 	 */
 	public function get_loader() {
@@ -212,4 +212,4 @@ class Dev_Suite {
 
 }
 
-Dev_Suite::instance()->run();
+Cobolt::instance()->run();

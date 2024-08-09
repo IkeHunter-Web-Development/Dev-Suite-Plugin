@@ -9,11 +9,11 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Dev_Suite
- * @subpackage Dev_Suite/includes
+ * @package    Cobolt
+ * @subpackage Cobolt/includes
  */
 
-namespace Dev_Suite;
+namespace Cobolt;
 /**
  * Define the internationalization functionality.
  *
@@ -21,11 +21,11 @@ namespace Dev_Suite;
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Dev_Suite
- * @subpackage Dev_Suite/includes
+ * @package    Cobolt
+ * @subpackage Cobolt/includes
  * @author     Your Name <email@example.com>
  */
-class Dev_Suite_i18n {
+class Cobolt_i18n {
 
 
 	/**
@@ -36,7 +36,7 @@ class Dev_Suite_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'dev-suite',
+			'cobolt',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

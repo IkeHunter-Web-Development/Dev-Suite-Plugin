@@ -6,11 +6,11 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Dev_Suite
- * @subpackage Dev_Suite/includes
+ * @package    Cobolt
+ * @subpackage Cobolt/includes
  */
 
-namespace Dev_Suite;
+namespace Cobolt;
 
 /**
  * Fired during plugin activation.
@@ -18,11 +18,11 @@ namespace Dev_Suite;
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @since      1.0.0
- * @package    Dev_Suite
- * @subpackage Dev_Suite/includes
+ * @package    Cobolt
+ * @subpackage Cobolt/includes
  * @author     Your Name <email@example.com>
  */
-class Dev_Suite_Activator {
+class Cobolt_Activator {
 
 	/**
 	 * Short Description. (use period)
@@ -37,4 +37,4 @@ class Dev_Suite_Activator {
 
 }
 
-Dev_Suite_Activator::activate();
+Cobolt_Activator::activate();

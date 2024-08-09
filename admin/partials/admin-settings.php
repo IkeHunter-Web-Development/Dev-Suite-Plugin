@@ -8,8 +8,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Dev_Suite
- * @subpackage Dev_Suite/admin/partials
+ * @package    Cobolt
+ * @subpackage Cobolt/admin/partials
  */
 ?>
 
@@ -19,8 +19,8 @@
   
   <form action="options.php" method="post">
     <?php
-      settings_fields('dev_suite_settings');
-      do_settings_sections('dev_suite_settings');
+      settings_fields('cobolt_settings');
+      do_settings_sections('cobolt_settings');
       submit_button();
     ?>
   </form>

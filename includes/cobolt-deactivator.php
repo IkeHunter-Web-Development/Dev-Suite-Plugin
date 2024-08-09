@@ -6,22 +6,22 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Dev_Suite
- * @subpackage Dev_Suite/includes
+ * @package    Cobolt
+ * @subpackage Cobolt/includes
  */
 
-namespace Dev_Suite;
+namespace Cobolt;
 /**
  * Fired during plugin deactivation.
  *
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    Dev_Suite
- * @subpackage Dev_Suite/includes
+ * @package    Cobolt
+ * @subpackage Cobolt/includes
  * @author     Your Name <email@example.com>
  */
-class Dev_Suite_Deactivator {
+class Cobolt_Deactivator {
 
 	/**
 	 * Short Description. (use period)
@@ -36,4 +36,4 @@ class Dev_Suite_Deactivator {
 
 }
 
-Dev_Suite_Deactivator::deactivate();
+Cobolt_Deactivator::deactivate();

@@ -1,16 +1,16 @@
 <?php
 
-namespace Dev_Suite\Admin;
+namespace Cobolt\Admin;
 
-class Dev_Suite_Admin_Notices {
+class Cobolt_Admin_Notices {
 	/**
 	 * The ID of this plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string $Dev_Suite The ID of this plugin.
+	 * @var      string $Cobolt The ID of this plugin.
 	 */
-	private string $Dev_Suite;
+	private string $Cobolt;
 
 	/**
 	 * The version of this plugin.
@@ -21,28 +21,28 @@ class Dev_Suite_Admin_Notices {
 	 */
 	private string $version;
 
-	public function __construct( $Dev_Suite ) {
+	public function __construct( $Cobolt ) {
 		// add_action('admin_notices', array($this, 'admin_notice'));
 		// add_action('admin_init', array($this, 'create_staging_notice_option'));
 		// add_action('admin_init', array($this, 'set_staging_mode'));
 //    add_action('admin_notices', array($this, 'show_staging_notice'));
 //		add_action( 'admin_init', array( $this, 'show_staging_notice' ) );
 //		add_action( 'admin_notices', array( $this, 'collapse_notices' ) );
-		$this->Dev_Suite = $Dev_Suite;
-		$this->version   = DEV_SUITE_VERSION;
+		$this->Cobolt = $Cobolt;
+		$this->version   = COBOLT_VERSION;
 	}
 
 	public function create_staging_notice_option() {
-		add_option( 'dev_suite_staging_mode', false );
+		add_option( 'cobolt_staging_mode', false );
 	}
 
 	public function set_staging_mode() {
-		update_option( 'dev_suite_staging_mode', true );
+		update_option( 'cobolt_staging_mode', true );
 	}
 
 	public function show_staging_notice() {
 		add_action( 'admin_notices', array( $this, 'admin_notice' ) );
-//		$staging_mode = get_option( 'dev_suite_staging_mode' );
+//		$staging_mode = get_option( 'cobolt_staging_mode' );
 //		if ( $staging_mode ) {
 //			add_action( 'admin_notices', array( $this, 'admin_notice' ) );
 //		}
@@ -77,7 +77,7 @@ class Dev_Suite_Admin_Notices {
 	}
 
 	public function enqueue_dock_notices_scripts() {
-		wp_enqueue_script( $this->Dev_Suite . '-dock-notices', plugin_dir_url( __FILE__ ) . 'js/dock-notices.js', array( 'jquery' ), $this->version, false );
-		wp_enqueue_style( $this->Dev_Suite . '-dock-notices', plugin_dir_url( __FILE__ ) . 'css/dock-notices.css', array(), $this->version, 'all' );
+		wp_enqueue_script( $this->Cobolt . '-dock-notices', plugin_dir_url( __FILE__ ) . 'js/dock-notices.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_style( $this->Cobolt . '-dock-notices', plugin_dir_url( __FILE__ ) . 'css/dock-notices.css', array(), $this->version, 'all' );
 	}
 }

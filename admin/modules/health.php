@@ -1,6 +1,6 @@
 <?php
 
-namespace Dev_Suite\Admin\Modules;
+namespace Cobolt\Admin\Modules;
 
 use WP_Query;
 

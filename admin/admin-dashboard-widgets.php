@@ -1,6 +1,6 @@
 <?php
 
-namespace Dev_Suite\Admin;
+namespace Cobolt\Admin;
 
 class Dashboard_Widgets {
 	public function __construct() {
@@ -20,12 +20,12 @@ class Dashboard_Widgets {
 	}
 
 	public function add_top_widget() {
-		wp_add_dashboard_widget( 'dev-suite-welcome', esc_html__( 'Welcome!' ), array( $this, 'render_top_widget' ) );
+		wp_add_dashboard_widget( 'cobolt-welcome', esc_html__( 'Welcome!' ), array( $this, 'render_top_widget' ) );
 
 		global $wp_meta_boxes;
 		$default_dashboard = $wp_meta_boxes['dashboard']['normal']['core'];
-		$new_widget_backup = array( 'dev-suite-welcome' => $default_dashboard['dev-suite-welcome'] );
-		unset( $default_dashboard['dev-suite-welcome'] );
+		$new_widget_backup = array( 'cobolt-welcome' => $default_dashboard['cobolt-welcome'] );
+		unset( $default_dashboard['cobolt-welcome'] );
 
 		$sorted_dashboard                             = array_merge( $new_widget_backup, $default_dashboard );
 		$wp_meta_boxes['dashboard']['normal']['core'] = $sorted_dashboard;

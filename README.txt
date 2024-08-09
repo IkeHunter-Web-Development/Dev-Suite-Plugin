@@ -43,9 +43,9 @@ This section describes how to install the plugin and get it working.
 
 e.g.
 
-1. Upload `dev-suite.php` to the `/wp-content/plugins/` directory
+1. Upload `cobolt.php` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('Dev_Suite_hook'); ?>` in your templates
+1. Place `<?php do_action('Cobolt_hook'); ?>` in your templates
 
 == Frequently Asked Questions ==
 

@@ -6,11 +6,11 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Dev_Suite
- * @subpackage Dev_Suite/includes
+ * @package    Cobolt
+ * @subpackage Cobolt/includes
  */
 
-namespace Dev_Suite;
+namespace Cobolt;
 /**
  * Register all actions and filters for the plugin.
  *
@@ -18,11 +18,11 @@ namespace Dev_Suite;
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Dev_Suite
- * @subpackage Dev_Suite/includes
+ * @package    Cobolt
+ * @subpackage Cobolt/includes
  * @author     Your Name <email@example.com>
  */
-class Dev_Suite_Loader {
+class Cobolt_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

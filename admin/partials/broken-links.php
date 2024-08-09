@@ -1,6 +1,6 @@
 <?php
 
-use Dev_Suite\Admin\Modules\Health;
+use Cobolt\Admin\Modules\Health;
 
 
 $health       = new Health();
