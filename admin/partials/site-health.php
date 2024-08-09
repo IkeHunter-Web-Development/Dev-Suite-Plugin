@@ -7,7 +7,8 @@
 
 use Dev_Suite\Admin\Modules\Health;
 
-$broken_shortcodes = Health::get_posts_broken_shortcodes();
+$health            = new Health();
+$broken_shortcodes = $health->get_posts_broken_shortcodes();
 ?>
 
 <div class="wrap">

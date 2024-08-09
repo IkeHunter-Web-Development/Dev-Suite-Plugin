@@ -175,12 +175,21 @@ class Admin {
 		);
 		add_submenu_page(
 			$this->Dev_Suite,
+			'Broken Links',
+			'Broken Links',
+			'manage_options',
+			'broken_links',
+			array( $this, 'broken_links' )
+		);
+		add_submenu_page(
+			$this->Dev_Suite,
 			'Settings',
 			'Settings',
 			'manage_options',
 			'dev_suite_settings',
 			array( $this, 'dev_suite_settings_page' )
 		);
+
 	}
 
 	/**
@@ -272,6 +281,15 @@ class Admin {
 	 */
 	public function site_health() {
 		include_once 'partials/site-health.php';
+	}
+
+	/**
+	 * Website Broken Links
+	 *
+	 * @since 1.0.0
+	 */
+	public function broken_links() {
+		include_once 'partials/broken-links.php';
 	}
 
 	public function render_settings_section() {

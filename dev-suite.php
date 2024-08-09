@@ -30,9 +30,12 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 define( 'DEV_SUITE_VERSION', '1.0.0' );
-define( 'DEV_SUITE_PLUGIN_NAME', 'The Development Suite' );
+define( 'DEV_SUITE_PLUGIN_NAME', 'Development Suite for WordPress' );
 define( 'DEV_SUITE_PLUGIN_SLUG', 'dev-suite' );
 define( 'DEV_SUITE_DIR', plugin_dir_path( __FILE__ ) );
+
+// TODO: Add update checker
+// https://github.com/YahnisElsts/plugin-update-checker?tab=readme-ov-file
 
 /**
  * The code that runs during plugin activation.
