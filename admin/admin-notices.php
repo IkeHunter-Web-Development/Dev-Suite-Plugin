@@ -3,31 +3,10 @@
 namespace Cobolt\Admin;
 
 class Cobolt_Admin_Notices {
-	/**
-	 * The ID of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string $Cobolt The ID of this plugin.
-	 */
 	private string $Cobolt;
-
-	/**
-	 * The version of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string $version The current version of this plugin.
-	 */
 	private string $version;
 
 	public function __construct( $Cobolt ) {
-		// add_action('admin_notices', array($this, 'admin_notice'));
-		// add_action('admin_init', array($this, 'create_staging_notice_option'));
-		// add_action('admin_init', array($this, 'set_staging_mode'));
-//    add_action('admin_notices', array($this, 'show_staging_notice'));
-//		add_action( 'admin_init', array( $this, 'show_staging_notice' ) );
-//		add_action( 'admin_notices', array( $this, 'collapse_notices' ) );
 		$this->Cobolt = $Cobolt;
 		$this->version   = COBOLT_VERSION;
 	}

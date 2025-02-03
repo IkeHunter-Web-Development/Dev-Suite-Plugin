@@ -1,62 +1,24 @@
 <?php
 
 namespace Cobolt\Admin;
+use Cobolt\Cobolt;
+
 /**
  * The admin-specific functionality of the plugin.
- *
- * @link       http://example.com
- * @since      1.0.0
- *
- * @package    Cobolt
- * @subpackage Cobolt/admin
  */
 require_once plugin_dir_path( __FILE__ ) . 'admin-notices.php';
 require_once plugin_dir_path( __FILE__ ) . 'admin-dashboard-widgets.php';
 
-/**
- * The admin-specific functionality of the plugin.
- *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the admin-specific stylesheet and JavaScript.
- *
- * @package    Cobolt
- * @subpackage Cobolt/admin
- * @author     Your Name <email@example.com>
- */
+
 class Admin {
 
-	/**
-	 * The ID of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string $Cobolt The ID of this plugin.
-	 */
-	private $Cobolt;
+	private string $Cobolt;
+	private string $version;
 
-	/**
-	 * The version of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string $version The current version of this plugin.
-	 */
-	private $version;
-
-	/**
-	 * Admin notices.
-	 *
-	 * @since 1.0.0
-	 */
-	private $admin_notices;
+	private Cobolt_Admin_Notices $admin_notices;
 
 	/**
 	 * Initialize the class and set its properties.
-	 *
-	 * @param string $Cobolt The name of this plugin.
-	 * @param string $version The version of this plugin.
-	 *
-	 * @since    1.0.0
 	 */
 	public function __construct( string $Cobolt, string $version ) {
 
@@ -78,8 +40,6 @@ class Admin {
 
 	/**
 	 * Register the stylesheets for the admin area.
-	 *
-	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
 
@@ -258,8 +218,6 @@ class Admin {
 
 	/**
 	 * Admin page.
-	 *
-	 * @since 1.0.0
 	 */
 	public function cobolt_admin_page() {
 		include_once 'app/templates/app.php';
@@ -267,8 +225,6 @@ class Admin {
 
 	/**
 	 * Settings page.
-	 *
-	 * @since 1.0.0
 	 */
 	public function cobolt_settings_page() {
 		include_once 'partials/admin-settings.php';
@@ -276,8 +232,6 @@ class Admin {
 
 	/**
 	 * Website Health page.
-	 *
-	 * @since 1.0.0
 	 */
 	public function site_health() {
 		include_once 'partials/site-health.php';
@@ -285,8 +239,6 @@ class Admin {
 
 	/**
 	 * Website Broken Links
-	 *
-	 * @since 1.0.0
 	 */
 	public function broken_links() {
 		include_once 'partials/broken-links.php';

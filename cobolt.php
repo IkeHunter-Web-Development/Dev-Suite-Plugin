@@ -34,12 +34,9 @@ define( 'COBOLT_PLUGIN_NAME', 'Development Suite for WordPress' );
 define( 'COBOLT_PLUGIN_SLUG', 'cobolt' );
 define( 'COBOLT_DIR', plugin_dir_path( __FILE__ ) );
 
-// TODO: Add update checker
-// https://github.com/YahnisElsts/plugin-update-checker?tab=readme-ov-file
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/cobolt-activator.php
  */
 function activate_cobolt() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/cobolt-activator.php';
@@ -47,7 +44,6 @@ function activate_cobolt() {
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/cobolt-deactivator.php
  */
 function deactivate_cobolt() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/cobolt-deactivator.php';
@@ -66,45 +62,3 @@ function run_cobolt() {
 }
 
 run_cobolt();
-
-
-function test_notice_1() {
-	?>
-    <div class="notice notice-error">
-        <h2>Test Notice 1</h2>
-        <p>This is a test notice.</p>
-    </div>
-	<?php
-}
-
-function test_notice_2() {
-	?>
-    <div class="notice notice-success is-dismissible">
-        <h2>Test Notice 2</h2>
-        <p>This is a test notice.</p>
-    </div>
-	<?php
-}
-
-function test_notice_3() {
-	?>
-    <div class="notice notice-warning is-dismissible">
-        <h2>Test Notice 3</h2>
-        <p>This is a test notice.</p>
-    </div>
-	<?php
-}
-
-function test_notice_4() {
-	?>
-    <div class="notice notice-info is-dismissible">
-        <h2>Test Notice 4</h2>
-        <p>This is a test notice.</p>
-    </div>
-	<?php
-}
-
-add_action( 'admin_notices', 'test_notice_1' );
-add_action( 'admin_notices', 'test_notice_2' );
-add_action( 'admin_notices', 'test_notice_3' );
-add_action( 'admin_notices', 'test_notice_4' );
