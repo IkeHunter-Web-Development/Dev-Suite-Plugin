@@ -1,0 +1,106 @@
+@import 'material-icons/iconfont/material-icons.css';
+
+// button,
+.btn {
+  @include border-inset(currentColor);
+  @include psuedo-parent;
+
+  box-sizing: border-box;
+  border-radius: 50px;
+  padding: 1.2rem 4rem;
+  min-width: 19rem;
+  // box-shadow: $border-inset;
+  border: none;
+  background-color: $white;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0s;
+
+  &,
+  &:link,
+  &:visited {
+    font-size: 1.3rem;
+    display: inline-block;
+    line-height: normal;
+    font-weight: 500;
+    font-family: Montserrat;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  &:hover {
+    @include border-inset($navy);
+    background-color: $navy;
+    color: $white;
+  }
+}
+
+.btn-primary {
+  box-shadow: none;
+  color: $white;
+
+  &::before {
+    @include psuedo-before;
+
+    background: radial-gradient(1836.01% 141.42% at -0% 0%, $navy 0%, $azure 100%);
+  }
+  &:hover {
+    @include border-inset(currentColor);
+    color: $azure;
+    background-color: white;
+    &::before {
+      left: 110%;
+    }
+  }
+}
+
+.btn-secondary {
+  color: $azure;
+
+  &::before {
+    @include psuedo-before;
+    background-color: $azure;
+    left: -110%;
+  }
+  &:hover {
+    color: $white;
+    &::before {
+      left: 0;
+    }
+  }
+}
+
+.btn-inline {
+  padding: 0;
+  min-width: auto;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  color: $azure;
+  font-size: 1.3rem;
+  font-weight: 500;
+  font-family: Montserrat;
+  border-radius: 0;
+  
+  text-decoration: none;
+  cursor: pointer;
+  
+  display: inline-flex;
+  align-items: center;
+
+  &::after {
+    font-family: 'Material Icons';
+    content: "arrow_forward_ios";
+    font-size: inherit;
+    margin-left: 1rem;
+  }
+  
+  &--text {
+    text-decoration: underline;
+    color: $azure;
+    
+    &::after {
+      content: none;
+    }
+  }
+}

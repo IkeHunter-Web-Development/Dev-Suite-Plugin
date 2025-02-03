@@ -1,0 +1,3 @@
+@function calc-width($cols, $container) {
+    @return calc($cols/$container * 100% - #{$gap});
+}

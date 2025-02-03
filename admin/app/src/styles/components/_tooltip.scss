@@ -1,0 +1,47 @@
+/* Global Tooltip Styles */
+.tooltip-parent {
+  position: relative;
+}
+
+.tooltip {
+  $box-shawdow: 0 0 1rem rgba($charcoal, 0.5);
+  $transition: 0.2s ease-in-out;
+  position: relative;
+  font-size: 1.4rem;
+  text-align: center;
+  transition: all $transition;
+
+  &::after {
+    $height: 5rem;
+
+    content: attr(tooltip-message);
+    background-color: $smoke;
+    color: $charcoal;
+    opacity: 0;
+    transition: opacity $transition;
+    z-index: 100;
+    display: block;
+
+    position: absolute;
+    top: calc(-1 * #{$height} + 0.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: auto;
+    min-width: 15rem;
+    max-width: 25rem;
+    max-height: 10rem;
+
+    padding: 1rem;
+    box-shadow: $box-shawdow;
+    border-radius: 0.5rem;
+  }
+
+  &:hover {
+    box-shadow: $box-shawdow;
+    transform: scale(1.05);
+    &::after {
+      opacity: 1;
+    }
+  }
+}

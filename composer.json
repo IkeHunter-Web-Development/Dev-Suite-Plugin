@@ -1,0 +1,10 @@
+{
+    "name": "ikehunter/cobolt-suite",
+    "authors": [
+        {
+            "name": "Isaac Hunter",
+            "email": "ikehunter5@gmail.com"
+        }
+    ],
+    "require": {}
+}

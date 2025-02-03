@@ -1,0 +1,36 @@
+.page {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.container {
+  padding: $gutter;
+  width: 100%;
+  // max-width: $content-width;
+  margin: 0 auto;
+  padding: 0 $gutter;
+}
+
+.align-left {
+  display: flex;
+  justify-content: flex-start;
+}
+.align-right {
+  display: flex;
+  justify-content: flex-end;
+}
+.margin-bottom {
+  margin-bottom: 5rem;
+}
+
+.flex {
+  display: flex;
+  
+  &--justify-between {
+    justify-content: space-between;
+  }
+}
